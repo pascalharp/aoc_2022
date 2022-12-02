@@ -12,7 +12,7 @@ impl PartialOrd for Choice {
         if self == other {
             return Some(Ordering::Equal);
         }
-        return match self {
+        match self {
             Choice::Rock => {
                 if *other == Choice::Paper {
                     Some(Ordering::Less)
@@ -34,7 +34,7 @@ impl PartialOrd for Choice {
                     Some(Ordering::Greater)
                 }
             }
-        };
+        }
     }
 }
 
@@ -46,22 +46,22 @@ impl FromStr for Choice {
             "A" | "X" => Ok(Self::Rock),
             "B" | "Y" => Ok(Self::Paper),
             "C" | "Z" => Ok(Self::Scissor),
-            _ => Err(format!("Invalid choice {}", s).into()),
+            _ => Err(format!("Invalid choice {}", s)),
         }
     }
 }
 
 impl Choice {
     fn play(&self, other: &Self) -> u32 {
-        return match self {
+        (match self {
             Choice::Rock => 1,
             Choice::Paper => 2,
             Choice::Scissor => 3,
-        } + match self.partial_cmp(other).unwrap() {
+        }) + (match self.partial_cmp(other).unwrap() {
             Ordering::Less => 0,
             Ordering::Equal => 3,
             Ordering::Greater => 6,
-        };
+        })
     }
 }
 
@@ -80,7 +80,7 @@ impl FromStr for Strategy {
             "X" => Ok(Self::Lose),
             "Y" => Ok(Self::Draw),
             "Z" => Ok(Self::Win),
-            _ => Err(format!("Invalid strategy {}", s).into()),
+            _ => Err(format!("Invalid strategy {}", s)),
         }
     }
 }
@@ -107,7 +107,7 @@ pub fn part_one(input: &str) -> u32 {
     input
         .lines()
         .map(|l| {
-            let mut split = l.split(" ");
+            let mut split = l.split(' ');
             let elf = split.next().unwrap().parse::<Choice>().unwrap();
             let me = split.next().unwrap().parse::<Choice>().unwrap();
             me.play(&elf)
@@ -119,7 +119,7 @@ pub fn part_two(input: &str) -> u32 {
     input
         .lines()
         .map(|l| {
-            let mut split = l.split(" ");
+            let mut split = l.split(' ');
             let elf = split.next().unwrap().parse::<Choice>().unwrap();
             let me = split
                 .next()

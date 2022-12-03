@@ -11,12 +11,10 @@ fn priority(c: char) -> u32 {
 pub fn part_one(input: &str) -> u32 {
     input
         .lines()
-        .map(|s| {
-            let (left, right) = s.split_at(s.len() / 2);
-            let map: HashSet<char> = left.chars().collect();
-            let common = right.chars().find(|c| map.contains(c)).unwrap();
-            priority(common)
-        })
+        .map(|s| s.split_at(s.len() / 2))
+        .map(|(l, r)| (l.chars().collect::<HashSet<char>>(), r))
+        .map(|(set, r)| r.chars().find(|c| set.contains(c)).unwrap())
+        .map(priority)
         .sum()
 }
 
@@ -25,13 +23,17 @@ pub fn part_two(input: &str) -> u32 {
         .lines()
         .array_chunks()
         .map(|[a, b, c]| {
-            let a: HashSet<char> = a.chars().collect();
-            let b: HashSet<char> = b.chars().collect();
-            let c: HashSet<char> = c.chars().collect();
-            let ab: HashSet<char> = a.intersection(&b).map(|c| c.to_owned()).collect();
-            let common = ab.intersection(&c).next().unwrap().to_owned();
-            priority(common)
+            (
+                a.chars().collect::<HashSet<char>>(),
+                b.chars().collect::<HashSet<char>>(),
+                c.chars().collect::<HashSet<char>>(),
+            )
         })
+        .map(|(a, b, c)| {
+            let ab: HashSet<char> = a.intersection(&b).map(|c| c.to_owned()).collect();
+            ab.intersection(&c).next().unwrap().to_owned()
+        })
+        .map(priority)
         .sum()
 }
 

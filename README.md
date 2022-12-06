@@ -17,3 +17,4 @@ My AoC 2022 solutions written in [Rust](https://www.rust-lang.org).
 | [Day 3: Rucksack Reorganization](https://adventofcode.com/2022/day/3) | [day03.rs](src/day03.rs) | ✔️ | ✔️ |
 | [Day 4: Camp Cleanup](https://adventofcode.com/2022/day/4) | [day04.rs](src/day04.rs) | ✔️ | ✔️ |
 | [Day 5: Supply Stacks](https://adventofcode.com/2022/day/5) | [day05.rs](src/day05.rs) | ✔️ | ✔️ |
+| [Day 6: Tuning Trouble](https://adventofcode.com/2022/day/6) | [day06.rs](src/day06.rs) | ✔️ | ✔️ |

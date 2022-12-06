@@ -55,10 +55,7 @@ pub fn part_one(input: &str) -> String {
         crates[to].extend(take.iter().rev())
     }
 
-    crates
-        .iter()
-        .filter_map(|ll| ll.back())
-        .collect()
+    crates.iter().filter_map(|ll| ll.back()).collect()
 }
 
 pub fn part_two(input: &str) -> String {
@@ -72,10 +69,7 @@ pub fn part_two(input: &str) -> String {
         crates[to].append(&mut take);
     }
 
-    crates
-        .iter()
-        .filter_map(|ll| ll.back())
-        .collect()
+    crates.iter().filter_map(|ll| ll.back()).collect()
 }
 
 #[cfg(test)]
@@ -83,21 +77,33 @@ mod tests {
 
     #[test]
     fn part_one_example() {
-        assert_eq!(super::part_one(include_str!("input/day05_example.txt")), "CMZ");
+        assert_eq!(
+            super::part_one(include_str!("input/day05_example.txt")),
+            "CMZ"
+        );
     }
 
     #[test]
     fn part_one() {
-        assert_eq!(super::part_one(include_str!("input/day05.txt")), "JCMHLVGMG");
+        assert_eq!(
+            super::part_one(include_str!("input/day05.txt")),
+            "JCMHLVGMG"
+        );
     }
 
     #[test]
     fn part_two_example() {
-        assert_eq!(super::part_two(include_str!("input/day05_example.txt")), "MCD");
+        assert_eq!(
+            super::part_two(include_str!("input/day05_example.txt")),
+            "MCD"
+        );
     }
 
     #[test]
     fn part_two() {
-        assert_eq!(super::part_two(include_str!("input/day05.txt")), "LVMRWSSPZ");
+        assert_eq!(
+            super::part_two(include_str!("input/day05.txt")),
+            "LVMRWSSPZ"
+        );
     }
 }
